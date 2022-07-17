@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # pre-order-management
 
 ## Build Setup
