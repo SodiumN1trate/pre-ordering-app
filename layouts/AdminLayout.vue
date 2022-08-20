@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <NavigationBar />
+    <AdminNavigationBar />
     <transition>
       <Nuxt />
     </transition>

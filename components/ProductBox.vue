@@ -1,17 +1,27 @@
 <template>
-  <div class="item-box border shadow p-3 mb-5 bg-white rounded">
-    <img class="shadow-sm p-3 mb-5 bg-white rounded" :src="image">
-    <h5>{{ name }}</h5>
-    <p>{{ type.name }}</p>
-    <h4>{{ price }}$</h4>
+  <div class="item-box border shadow p-3 mb-5 bg-white rounded" @click="addAccessory(accessory)">
+    <img class="shadow-sm p-3 mb-5 bg-white rounded" :src="accessory.image">
+    <h5>{{ accessory.name }}</h5>
+    <p>{{ accessory.type.name }}</p>
+    <h4>{{ accessory.price }}$</h4>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'ProductBox',
   layout: 'DefaultLayout',
-  props: ['name', 'image', 'price', 'type']
+  props: ['accessory'],
+  methods: {
+    addAccessory (item) {
+      this.$store.commit('addAccessory', item)
+      if (this.$store.state.product.symbol) {
+        this.$router.push('/order')
+      } else {
+        this.$router.push('/')
+      }
+    }
+  }
 }
 </script>
 
@@ -21,6 +31,7 @@ export default {
   flex-direction: column;
   transition: all .2s ease-in-out;
   cursor: pointer;
+  width: 200px;
 }
 
 .item-box:hover {

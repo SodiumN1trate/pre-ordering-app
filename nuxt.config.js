@@ -50,7 +50,19 @@ export default {
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: process.env.API_ADDRESS
+  },
+
+  publicRuntimeConfig: {
+    axios: {
+      browserBaseURL: process.env.API_ADDRESS
+    }
+  },
+
+  privateRuntimeConfig: {
+    axios: {
+      baseURL: process.env.API_ADDRESS
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
@@ -72,9 +84,9 @@ export default {
           autoFetch: true
         },
         endpoints: {
-          login: { url: process.env.API_ADDRESS + '/login', method: 'POST'},
-          logout: { url: process.env.API_ADDRESS + '/logout', method: 'GET'},
-          user: { url: process.env.API_ADDRESS + '/me', method: 'GET'}
+          login: { url: process.env.API_ADDRESS + '/login', method: 'POST' },
+          logout: { url: process.env.API_ADDRESS + '/logout', method: 'GET' },
+          user: false
         }
       }
     }

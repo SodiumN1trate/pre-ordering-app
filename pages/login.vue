@@ -45,7 +45,7 @@ export default {
         this.$auth.strategy.token.sync()
         this.$auth.setUser(data.data.user)
         this.success = data.data.message.message
-        this.$router.push('/admin_area')
+        this.$router.push('/admin')
       } catch (e) {
         if (e.response.data.message.message) {
           this.error = e.response.data.message.message

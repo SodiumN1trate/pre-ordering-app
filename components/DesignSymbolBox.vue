@@ -1,14 +1,21 @@
 <template>
-  <div class="item-box border shadow p-3 mb-5 bg-white rounded">
-    <img class="shadow-sm p-3 mb-5 bg-white rounded" :src="image">
+  <div class="item-box border shadow p-3 mb-5 bg-white rounded" @click="addSymbol(item)">
+    <img class="shadow-sm p-3 mb-5 bg-white rounded" :src="item.image">
   </div>
 </template>
 
 <script>
 export default {
-  name: 'IndexPage',
+  name: 'DesignSymbolBox',
   layout: 'DefaultLayout',
-  props: ['image']
+  props: ['item'],
+  methods: {
+    addSymbol (item) {
+      console.log(item)
+      this.$store.commit('addSymbol', item)
+      this.$router.push('/select')
+    }
+  }
 }
 </script>
 

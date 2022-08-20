@@ -1,15 +1,17 @@
 <template>
-  <div class="content">
+  <div>
     <h3 class="text-center mb-5">Choose a t-shirt and put one of the design symbols on it!</h3>
     <div
-      v-for="item in items"
-      :key="item">
-      <ProductBox
-        v-if="item.type.id === 1"
-        :image="item.image"
-        :name="item.name"
-        :type="item.type"
-        :price="item.price"/>
+      class="d-flex flex-wrap flex-row justify-content-center"
+      style="gap: 20px;"
+    >
+      <div
+        v-for="item in items"
+        :key="item.id">
+        <ProductBox
+          v-if="item.type.id === 1"
+          :accessory="item"/>
+      </div>
     </div>
   </div>
 </template>
@@ -25,18 +27,8 @@ export default {
     }
   },
   async fetch () {
-    this.items = await fetch(process.env.API_ADDRESS + '/products').then(res => res.json())
-    this.items = this.items.data
+    this.items = await this.$axios.get('/products').then(res => res)
+    this.items = this.items.data.data
   }
 }
 </script>
-
-<style scoped>
-.content {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-</style>
