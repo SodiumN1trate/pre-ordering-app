@@ -18,7 +18,8 @@
 <script>
 export default {
   name: 'SelectPage',
-  layout: 'DefaultLayout'
+  layout: 'DefaultLayout',
+  auth: false
 }
 </script>
 
